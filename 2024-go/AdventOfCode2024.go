@@ -78,8 +78,13 @@ func day01() {
 	println(sum2)
 }
 
+func day02() {
+	
+}
+
 func main() {
-	day01()
+	// day01()
+	day02()
 }
 
 func abs(a, b uint32) uint32 {
