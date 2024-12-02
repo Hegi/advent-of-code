@@ -50,7 +50,7 @@ func getIntegers(line string) (uint32, uint32, error) {
 	return uint32(num1), uint32(num2), nil
 }
 
-func main() {
+func day01() {
 	var (
 		list1 []uint32
 		list2 []uint32
@@ -58,7 +58,35 @@ func main() {
 	list1, list2, _ = readNumberLists("inputs/day01/01.txt")
 	sort.Sort(Uint32Slice(list1))
 	sort.Sort(Uint32Slice(list2))
-	
+
+	var sum uint32
+	for i := 0; i < len(list1); i++ {
+		sum += abs(list1[i], list2[i])
+	}
+	println(sum)
+
+	list2Cntr := make(map[uint32]uint32)
+	for _, v := range list2 {
+		list2Cntr[v]++
+	}
+
+	var sum2 uint32
+	for _, v := range list1 {
+		sum2 += v * list2Cntr[v]
+	}
+
+	println(sum2)
+}
+
+func main() {
+	day01()
+}
+
+func abs(a, b uint32) uint32 {
+	if a > b {
+		return a - b
+	}
+	return b - a
 }
 
 type Uint32Slice []uint32
